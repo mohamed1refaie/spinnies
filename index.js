@@ -26,7 +26,7 @@ class Spinnies {
     this.lineCount = 0;
     this.currentFrameIndex = 0;
     this.spin = !this.options.disableSpins && !process.env.CI && process.stderr && process.stderr.isTTY;
-    this.bindSigint();
+    //this.bindSigint();
   }
 
   pick(name) {
@@ -78,6 +78,10 @@ class Spinnies {
     delete this.spinners[name];
 
     return spinner;
+  }
+
+  countLine() {
+    return this.lineCount;
   }
 
   stopAll(newStatus = 'stopped') {
@@ -188,12 +192,12 @@ class Spinnies {
   }
 
   bindSigint(lines) {
-    process.removeAllListeners('SIGINT');
-    process.on('SIGINT', () => {
-      cliCursor.show();
-      readline.moveCursor(process.stderr, 0, this.lineCount);
-      process.exit(0);
-    });
+    // process.removeAllListeners('SIGINT');
+    // process.on('SIGINT', () => {
+    //   cliCursor.show();
+    //   readline.moveCursor(process.stderr, 0, this.lineCount);
+    //   process.exit(0);
+    // });
   }
 }
 
